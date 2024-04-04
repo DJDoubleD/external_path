@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:external_path/external_path.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -41,8 +43,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> getPublicDirectoryPath() async {
     String path;
 
-    path = await ExternalPath.getExternalStoragePublicDirectory(
-        ExternalPath.DIRECTORY_DOWNLOADS);
+    path = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
 
     setState(() {
       print(path); // /storage/emulated/0/Download
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       body: ListView.builder(
           itemCount: _exPath.length,
           itemBuilder: (context, index) {
-            return Center(child: Text("${_exPath[index]}"));
+            return Center(child: Text(_exPath[index]));
           }),
     ));
   }
