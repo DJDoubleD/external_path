@@ -12,5 +12,10 @@
 coverage/
 pubspec.lock
 
-.idea
 .gradle
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
