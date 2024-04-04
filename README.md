@@ -10,7 +10,7 @@ https://pub.dev/packages/external_path
 Below given table contains the types of argument you can pass to `getExternalStoragePublicDirectory()` function
 
 | ExternalPath                         |
-| ------------------------------------ |
+|--------------------------------------|
 | ExternalPath.DIRECTORY_MUSIC         |
 | ExternalPath.DIRECTORY_PODCASTS      |
 | ExternalPath.DIRECTORY_RINGTONES     |
@@ -26,7 +26,7 @@ Below given table contains the types of argument you can pass to `getExternalSto
 
 ## Usage
 
-First Add `external_path` as a dipendency in your project `pubspeck.yaml`.
+First Add `external_path` as a dependency in your project `pubspec.yaml`.
 
 Then, import `external_path` package.
 
@@ -48,7 +48,7 @@ Package has two functions
 
   // To get public storage directory path
   Future<void> getPath_2() async {
-    var path = await .getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+    var path = await getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
     print(path);  // /storage/emulated/0/Download
   }
 ```

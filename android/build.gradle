@@ -30,7 +30,7 @@ android {
         namespace 'com.pinciat.external_path'
     }
 
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
