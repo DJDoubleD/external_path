@@ -43,7 +43,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> getPublicDirectoryPath() async {
     String path;
 
-    path = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
+    path = await ExternalPath.getExternalStoragePublicDirectory(
+        ExternalPath.DIRECTORY_DOWNLOADS);
 
     setState(() {
       print(path); // /storage/emulated/0/Download
@@ -55,12 +56,12 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('external_path example app'),
       ),
       body: ListView.builder(
           itemCount: _exPath.length,
           itemBuilder: (context, index) {
-            return Center(child: Text(_exPath[index]));
+            return Center(child: Text('External Path: ${_exPath[index]}'));
           }),
     ));
   }
