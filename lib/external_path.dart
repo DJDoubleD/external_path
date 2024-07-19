@@ -32,6 +32,20 @@ class ExternalPath {
         .invokeMethod('getExternalStoragePublicDirectory', {'type': type});
     return externalPublicDir;
   }
+
+  /// Retrieves the SD card storage directory path.
+  static Future<String?> getSDCardStorageDirectory() async {
+    final String? externalSDCardDir =
+        await _channel.invokeMethod<String?>('getSDCardStorageDirectory');
+    return externalSDCardDir;
+  }
+
+  /// Retrieves a list of USB storage directories.
+  static Future<List<String>> getUSBStorageDirectories() async {
+    final List<String> usbPaths =
+        await _channel.invokeMethod('getUSBStorageDirectories');
+    return usbPaths;
+  }
 }
 
 class ExStoragePath01 {

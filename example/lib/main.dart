@@ -14,27 +14,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> _exPath = [];
+  List<String> _exPaths = [];
+  List<String> _exUSBPaths = [];
 
   @override
   void initState() {
     super.initState();
 
-    getPath();
+    getPaths();
 
     getPublicDirectoryPath();
+
+    getSDCardDirectoryPath();
   }
 
   // Get storage directory paths
   // Like internal and external (SD card) storage path
-  Future<void> getPath() async {
+  Future<void> getPaths() async {
     List<String> paths;
     // getExternalStorageDirectories() will return list containing internal storage directory path
     // And external storage (SD card) directory path (if exists)
     paths = await ExternalPath.getExternalStorageDirectories();
 
     setState(() {
-      _exPath = paths; // [/storage/emulated/0, /storage/B3AE-4D28]
+      _exPaths = paths; // [/storage/emulated/0, /storage/B3AE-4D28]
     });
   }
 
@@ -47,7 +50,32 @@ class _MyAppState extends State<MyApp> {
         ExternalPath.DIRECTORY_DOWNLOADS);
 
     setState(() {
-      print(path); // /storage/emulated/0/Download
+      print("DIRECTORY_DOWNLOADS: " + path); // /storage/emulated/0/Download
+    });
+  }
+
+  // To get external SDCard storage directory (if present).
+  // Use below code
+  Future<void> getSDCardDirectoryPath() async {
+    String? SdCardPath;
+
+    SdCardPath = await ExternalPath.getSDCardStorageDirectory();
+
+    setState(() {
+      print("SDCard path: " + SdCardPath.toString());
+    });
+  }
+
+  // To get external USB storage directory (if present).
+  // Use below code
+  Future<void> getUSBPaths() async {
+    List<String> UsbPaths;
+    ;
+
+    UsbPaths = await ExternalPath.getUSBStorageDirectories();
+
+    setState(() {
+      print("USB paths: " + UsbPaths.toString());
     });
   }
 
@@ -59,9 +87,9 @@ class _MyAppState extends State<MyApp> {
         title: const Text('external_path example app'),
       ),
       body: ListView.builder(
-          itemCount: _exPath.length,
+          itemCount: _exPaths.length,
           itemBuilder: (context, index) {
-            return Center(child: Text('External Path: ${_exPath[index]}'));
+            return Center(child: Text('External Path: ${_exPaths[index]}'));
           }),
     ));
   }
