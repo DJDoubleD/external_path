@@ -42,9 +42,12 @@ class ExternalPath {
 
   /// Retrieves a list of USB storage directories.
   static Future<List<String>> getUSBStorageDirectories() async {
-    final List<String> usbPaths =
+    final List<dynamic>? result =
         await _channel.invokeMethod('getUSBStorageDirectories');
-    return usbPaths;
+    if (result != null) {
+      return result.cast<String>();
+    }
+    return [];
   }
 }
 
