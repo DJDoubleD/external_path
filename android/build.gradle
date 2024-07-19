@@ -2,7 +2,7 @@ group 'com.pinciat.external_path'
 version '1.0-SNAPSHOT'
 
 buildscript {
-     ext.kotlin_version = '1.9.24'
+    ext.kotlin_version = '1.9.24'
     repositories {
         google()
         mavenCentral()
@@ -28,6 +28,15 @@ android {
     namespace 'com.pinciat.external_path'
 
     compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
