@@ -1,8 +1,9 @@
 # external_path
 
 external_path is a flutter plugin that provides internal, external storage path and external public storage path.
+external_path also gives you the option to get the external SDCard path and all external USB storage paths (if available)
 
-https://pub.dev/packages/external_path
+<https://pub.dev/packages/external_path>
 
 ## Features
 
@@ -10,7 +11,7 @@ https://pub.dev/packages/external_path
 Below given table contains the types of argument you can pass to `getExternalStoragePublicDirectory()` function
 
 | ExternalPath                         |
-|--------------------------------------|
+| ------------------------------------ |
 | ExternalPath.DIRECTORY_MUSIC         |
 | ExternalPath.DIRECTORY_PODCASTS      |
 | ExternalPath.DIRECTORY_RINGTONES     |
@@ -34,11 +35,11 @@ Then, import `external_path` package.
 import 'package:external_path/external_path.dart';
 ```
 
-Package has two functions
+Package has four functions
 
 ```dart
   // Get storage directory paths
-  Future<void> getPath_1() async {
+  Future<void> printExternalStoragePaths() async {
     var path = await ExternalPath.getExternalStorageDirectories();
     print(path);  // [/storage/emulated/0, /storage/B3AE-4D28]
 
@@ -47,8 +48,22 @@ Package has two functions
 
 
   // To get public storage directory path
-  Future<void> getPath_2() async {
+  Future<void> printPublicDownloadsDirectoryPath() async {
     var path = await getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
     print(path);  // /storage/emulated/0/Download
+  }
+
+
+  // Get SDCard storage directory path
+  Future<void> printSDCardPath() async {
+    var path = await getSDCardStorageDirectory();
+    print(path);  // /storage/B3AE-4D28 (example value)
+  }
+
+
+  // Get USB storage directory paths
+  Future<void> printUSBStoragePathss() async {
+    var path = await getUSBStorageDirectories();
+    print(path);  // /storage/F403-1AD0 (example value)
   }
 ```
