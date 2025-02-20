@@ -10,7 +10,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 import java.io.File
 
 /** ExternalPathPlugin */
@@ -24,12 +23,8 @@ class ExternalPathPlugin : FlutterPlugin, MethodCallHandler {
         channel.setMethodCallHandler(this)
     }
 
-    companion object {
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            val channel = MethodChannel(registrar.messenger(), "external_path")
-            channel.setMethodCallHandler(ExternalPathPlugin())
-        }
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        channel.setMethodCallHandler(null)
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -81,9 +76,5 @@ class ExternalPathPlugin : FlutterPlugin, MethodCallHandler {
     private fun isDirectoryExists(path: String): Boolean {
         val directory = File(path)
         return directory.exists() && directory.isDirectory
-    }
-
-    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-        channel.setMethodCallHandler(null)
     }
 }
